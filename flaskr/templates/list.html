@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %} List data {% endblock %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <table class="table table-sm">
+            <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">E-Mail</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for item in items -%}
+            <tr>
+                <th scope="row">{{ item.id }}</th>
+                <td>{{ item.name }}</td>
+                <td>{{ item.email }}</td>
+            </tr>
+            {%- endfor %}
+
+            </tbody>
+        </table>
+    </div>
+
+</div>
+{% endblock %}

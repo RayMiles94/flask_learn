@@ -17,4 +17,12 @@ repos:
   rev: v2.17.5
   hooks:
     - id: pylint
+      language_version: python3.10
+      exclude: templates/|static/|flaskr/
       args: [flaskr, --disable=import-error]
+# flake8
+-   repo: https://github.com/pycqa/flake8
+    rev: 7.0.0
+    hooks:
+    -   id: flake8
+

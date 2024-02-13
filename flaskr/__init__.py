@@ -1,19 +1,26 @@
 #!/usr/bin/env python
-"""Module flask."""
+""" Module flask. """
 
 from flask import Flask, render_template, request
 from flaskr.db import db_session, init_db
 from flaskr.models import User
+from subroute import app as submodule
 
 app = Flask(__name__)
+app.register_blueprint(submodule, url_prefix="/sub")
 init_db()
 
 
 @app.route("/")
 def hello_world():
     """Return index html file"""
-    print(User.query.all())
     return render_template("index.html")
+
+
+@app.route("/list")
+def list_users():
+    """List users"""
+    return render_template("list.html", **{"items": User.query.all()})
 
 
 @app.route("/submit", methods=["POST"])
@@ -30,7 +37,7 @@ def form_submit():
 
 
 @app.teardown_appcontext
-def shutdown_session():
+def shutdown_session(exception=None):
     """Shutdown session"""
     db_session.remove()
 
