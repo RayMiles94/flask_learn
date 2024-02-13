@@ -30,8 +30,8 @@ def form_submit():
 
 
 @app.teardown_appcontext
-def shutdown_session(exception=None):
-    """ Shitdown session """
+def shutdown_session():
+    """Shutdown session"""
     db_session.remove()
 
 
