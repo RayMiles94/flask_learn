@@ -31,7 +31,9 @@ class Address(Base):
 
     __tablename__ = "address"
 
+    # ID
     id: Mapped[int] = mapped_column(primary_key=True)
+    # Columns
     email_address: Mapped[str]
     user_id: Mapped[int] = mapped_column(ForeignKey("users.id"))
     user: Mapped["User"] = relationship(back_populates="addresses")
